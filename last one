@@ -1,0 +1,57 @@
+
+
+Console.WriteLine("hello oop");
+
+var p1 = new Person("Scott", "Hanselman", new DateOnly(1970, 1, 1));
+var p2 = new Person("David", "Fowler", new DateOnly(1986, 1, 1));
+
+p1.Pets.Add(new Dog("Fred"));
+p1.Pets.Add(new Dog("Barney"));
+p2.Pets.Add(new Cat("Beyonce"));
+
+List<Person> people = new List<Person> { p1, p2 };
+
+foreach (var person in people)
+{
+    Console.WriteLine($"{person}");
+    foreach (var pet in person.Pets)
+    {
+        Console.WriteLine($"  {pet}");
+    }
+}
+public class Person
+{
+    public string First { get; }
+    public string Last { get; }
+    public DateOnly Birthday { get; }
+    public List<Pet> Pets { get; } = new();
+
+    public Person(string first, string last, DateOnly birthday)
+    {
+        First = first;
+        Last = last;
+        Birthday = birthday;
+    }
+
+    public override string ToString()
+    {
+        return $"Human {First} {Last}";
+    }
+}
+
+public abstract class Pet
+{
+    public string First { get; }
+
+    protected Pet(string firstname)
+    {
+        First = firstname;
+    }
+
+    public abstract string MakeNoise();
+
+    public override string ToString()
+    {
+        return First;
+    }
+}
